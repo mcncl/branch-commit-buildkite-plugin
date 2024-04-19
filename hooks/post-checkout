@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ $BUILDKITE_SOURCE != "ui" ]; then
+    exit 0
+fi
+
 # Check if the environment variable BUILDKITE_BRANCH is set
 # This should always be the case, but we should handle situations where it isn't
 if [ -z "$BUILDKITE_BRANCH" ]; then
