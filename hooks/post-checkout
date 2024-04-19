@@ -8,10 +8,10 @@ if [ -z "$BUILDKITE_BRANCH" ]; then
 fi
 
 # Get the current commit SHA
-current_commit=$(git rev-parse HEAD)
+current_commit=$(git rev-parse $BUILDKITE_COMMIT)
 
 # Get the branch name of the current commit
-current_branch=$(git rev-parse --abbrev-ref HEAD)
+current_branch=$(git rev-parse --abbrev-ref $BUILDKITE_COMMIT)
 
 # Get the branch name of the commit SHA
 commit_branch=$(git name-rev --name-only $current_commit)
