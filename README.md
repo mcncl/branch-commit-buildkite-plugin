@@ -21,8 +21,8 @@ In `warn` mode:
 
 ```yaml
 steps:
-  - label: "🔨 Running plugin"
-    command: "echo template plugin"
+  - label: ":pipeline:"
+    command: buildkite-agent pipeline upload
     plugins:
       - branch-commit:
           mode: "warn"
@@ -32,11 +32,12 @@ In `strict` mode:
 
 ```yaml
 steps:
-  - label: "🔨 Running plugin"
-    command: "echo template plugin"
-    plugins:
-      - branch-commit:
-          mode: "strict"
+  steps:
+    - label: ":pipeline:"
+      command: buildkite-agent pipeline upload
+      plugins:
+        - branch-commit:
+            mode: "strict"
 ```
 
 ## ⚒ Developing
