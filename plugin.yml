@@ -1,13 +1,11 @@
-name: Buildkite Plugin
-description: Exceptional functionality
+name: Commit Branch Buildkite Plugin
+description: Checks that a commit it present on the branch defined by the BUILDKITE_BRANCH variable. Best suited for UI builds.
 author: https://github.com/buildkite-plugins
 requirements:
   - bash
 configuration:
   properties:
-    mandatory:
-      type: string
-    optional:
+    mode:
       type: string
   required:
     - mandatory

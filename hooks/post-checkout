@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Check if the environment variable BUILDKITE_BRANCH is set
+# This should always be the case, but we should handle situations where it isn't
+if [ -z "$BUILDKITE_BRANCH" ]; then
+    echo "ERROR: BUILDKITE_BRANCH environment variable is not set."
+    exit 1
+fi
+
+# Get the current commit SHA
+current_commit=$(git rev-parse HEAD)
+
+# Get the branch name of the current commit
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Get the branch name of the commit SHA
+commit_branch=$(git name-rev --name-only $current_commit)
+
+# Check if the current branch name matches BUILDKITE_BRANCH
+if [ "$current_branch" != "$BUILDKITE_BRANCH" ]; then
+    if [ "$VALIDATE_MODE" == "strict" ]; then
+        echo "ERROR: Current branch ($current_branch) does not match BUILDKITE_BRANCH ($BUILDKITE_BRANCH)."
+        exit 1
+    elif [ "$VALIDATE_MODE" == "warn" ]; then
+        echo -e "\033[0;33mWARNING: Current branch ($current_branch) does not match BUILDKITE_BRANCH ($BUILDKITE_BRANCH).\033[0m"
+    fi
+fi
+
+# Continue with the script's execution
+echo "Validation successful."

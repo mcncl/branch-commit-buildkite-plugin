@@ -1,6 +1,6 @@
-# Template Buildkite Plugin [![Build status](https://badge.buildkite.com/d673030645c7f3e7e397affddd97cfe9f93a40547ed17b6dc5.svg)](https://buildkite.com/buildkite/plugins-template)
+# Branch Commit Buildkite Plugin 
 
-A Buildkite plugin for something awesome
+A Buildkite plugin to check that the build commit is on the set branch
 
 ## Options
 
@@ -8,41 +8,35 @@ These are all the options available to configure this plugin's behaviour.
 
 ### Required
 
-#### `mandatory` (string)
+#### `mode` (string)
 
-A great description of what this is supposed to do.
-
-### Optional
-
-#### `optional` (string)
-
-Describe how the plugin behaviour changes if this option is not specified, allowed values and its default.
+This can be either `warn` or `strict`.
+ 
+- `warn` will output a warning that the current set `BUILDKITE_BRANCH` is not where the build commit is located but continue the build
+- `strict` will fail the build in the above scenario
 
 ## Examples
 
-Show how your plugin is to be used
+In `warn` mode:
 
 ```yaml
 steps:
   - label: "🔨 Running plugin"
     command: "echo template plugin"
     plugins:
-      - template#v1.0.0:
-          mandatory: "value"
+      - branch-commit:
+          mode: "warn"
 ```
 
-## And with other options as well
-
-If you want to change the plugin behaviour:
+In `strict` mode:
 
 ```yaml
 steps:
   - label: "🔨 Running plugin"
-    command: "echo template plugin with options"
+    command: "echo template plugin"
     plugins:
-      - template#v1.0.0:
-          mandatory: "value"
-          optional: "example"
+      - branch-commit:
+          mode: "strict"
 ```
 
 ## ⚒ Developing
