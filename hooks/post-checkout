@@ -22,7 +22,3 @@ if [ "$commit_branch" != "$BUILDKITE_BRANCH" ]; then
         echo -e "\033[0;33mWARNING: Commit branch ($commit_branch) does not match BUILDKITE_BRANCH ($BUILDKITE_BRANCH).\033[0m"
     fi
 fi
-
-echo "COMMIT:: $current_commit"
-
-echo "COMM BRANCH:: $commit_branch"
