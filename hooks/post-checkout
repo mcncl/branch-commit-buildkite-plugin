@@ -26,7 +26,8 @@ if [ "$current_branch" != "$BUILDKITE_BRANCH" ]; then
     fi
 fi
 
-echo "$current_branch"
+echo "COMMIT:: $current_commit"
 
-# Continue with the script's execution
-echo "Validation successful."
+echo "CURR BRANCH:: $current_branch"
+
+echo "COMM BRANCH:: $commit_branch"
